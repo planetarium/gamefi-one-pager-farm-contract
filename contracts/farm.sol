@@ -94,6 +94,7 @@ contract Farm is Ownable2Step {
         uint256 reward = _calculateReward(msg.sender);
 
         TotalDepositAmount -= userDeposit.amount;
+        delete userAssets[msg.sender]; // Reset the deposit
 
         // Transfer deposit amount
         DEPOSIT_TOKEN.safeTransfer(msg.sender, userDeposit.amount);
@@ -102,8 +103,6 @@ contract Farm is Ownable2Step {
         DEPOSIT_TOKEN.safeTransferFrom(REWARDS_VAULT, msg.sender, reward);
 
         emit Withdraw(msg.sender, userDeposit.amount, reward, block.timestamp);
-
-        delete userAssets[msg.sender]; // Reset the deposit
     }
 
     function currentReward(address _user) external view returns (uint256) {
@@ -141,12 +140,11 @@ contract Farm is Ownable2Step {
 
         uint256 reward = _calculateReward(_recipient);
 
+        TotalDepositAmount -= userAmount;
+        delete userAssets[_recipient]; // Reset the deposit
+
         DEPOSIT_TOKEN.safeTransfer(_recipient, userAmount);
         DEPOSIT_TOKEN.safeTransferFrom(REWARDS_VAULT, _recipient, reward);
-
-        TotalDepositAmount -= userAmount;
-
-        delete userAssets[_recipient]; // Reset the deposit
 
         emit AssetTransferred(_recipient, userAmount, reward);
     }
