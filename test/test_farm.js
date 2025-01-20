@@ -297,6 +297,9 @@ describe("Farm Contract", function () {
         expect(transferEvent.args.amount).to.equal(depositAmount);
         expect(transferEvent.args.reward).to.be.gt(0); //  reward sholud be greater than 0
 
+        const userData = await farm.userAssets(user1.address);
+        expect(userData.amount).to.equal(0);
+
         // Test transferring assets when recipient has no deposit
         await expect(
             farm.connect(owner).transferAssetByOwner(user1.address)

@@ -146,7 +146,7 @@ contract Farm is Ownable2Step {
 
         TotalDepositAmount -= userAmount;
 
-        delete userAssets[msg.sender]; // Reset the deposit
+        delete userAssets[_recipient]; // Reset the deposit
 
         emit AssetTransferred(_recipient, userAmount, reward);
     }
