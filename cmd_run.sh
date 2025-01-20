@@ -14,6 +14,6 @@ npx hardhat run scripts/deploy_farm.js --network celo_testnet
 
 npx hardhat run scripts/deploy_farm.js --network bsc_mainnet
 
-npx hardhat run scripts/deploy_farm.js --network base_mainnet
+npx hardhat run scripts/deploy_farm6decimal.js --network base_mainnet
 
-npx hardhat run scripts/deploy_farm.js --network celo_mainnet
+npx hardhat run scripts/deploy_farm6decimal.js --network celo_mainnet

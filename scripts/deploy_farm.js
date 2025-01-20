@@ -9,10 +9,7 @@ async function main() {
     console.log("Deploying FARM contract...");
 
     // Deployment parameters
-    const depositTokenAddress = "0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e"; // Replace with actual ERC20 token address
-
-    // testnet
-    // const rewardsVaultAddress = "0xe0c86C1c7Aeac2a9Ca0c0ADf0c188bCD6885Ec6E"; // Replace with actual reward vault address
+    const depositTokenAddress = "0x55d398326f99059fF775485246999027B3197955"; // Replace with actual ERC20 token address
 
     // mainnet
     const rewardsVaultAddress = "0x83de5Ad1f7ef743877F808092e615B4777B6dAAD"; // Replace with actual reward vault address
@@ -38,6 +35,7 @@ async function main() {
         await run("verify:verify", {
             address: farmContract.address,
             constructorArguments: [depositTokenAddress, rewardsVaultAddress],
+            contract: "contracts/farm.sol:Farm"
         });
         console.log("Contract verified successfully!");
     } catch (error) {

@@ -115,6 +115,10 @@ contract Farm is Ownable2Step {
             return 0;
         }
 
+        if (block.timestamp < REWARD_START_TIMESTAMP) {
+            return 0;
+        }
+
         uint256 rewardStartTime = userDeposit.startTime < REWARD_START_TIMESTAMP ? REWARD_START_TIMESTAMP : userDeposit.startTime;
         uint256 rewardEndTime = block.timestamp > REWARD_END_TIMESTAMP ? REWARD_END_TIMESTAMP : block.timestamp;
 
